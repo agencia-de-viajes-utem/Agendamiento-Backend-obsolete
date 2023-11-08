@@ -61,8 +61,12 @@ jobs:
       run: |
         cd back
         go build -v .
-        
-
+        #ENV_FILE_AG_BACK son las variables de entorno especificas de este repo
+    - name: Create .env file
+      run: |
+        echo "${{ secrets.ENV_FILE_AG_BACK }}" > .env
+      working-directory: ${{ github.workspace }}
+      
     - name: Testeo de go
       # No se han configurado tests todavía así que este paso no realiza nada momentaneamente
       # y se ha deshabilitado. queda pendiente desarrollar pruebas y que sean ejecutadas en esta acción.
